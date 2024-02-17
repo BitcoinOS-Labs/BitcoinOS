@@ -1,8 +1,8 @@
 {
   "canisters": {
-    "bitcoinOS_backend": {
-      "candid": "src/bitcoinOS_backend/bitcoinOS_backend.did",
-      "package": "bitcoinOS_backend",
+    "wallet": {
+      "candid": "agents/wallet/wallet.did",
+      "package": "wallet",
       "type": "rust"
     }
   },
