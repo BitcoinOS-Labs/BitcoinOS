@@ -1,3 +1,10 @@
+
+# ![logo](./images/bitcoinos.png)
+
+<img src="./images/bitcoinos.png" width="50%" height="50%">
+
+#
+
 # bitcoinOS
 
 Welcome to your new bitcoinOS project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
