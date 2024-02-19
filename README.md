@@ -1,7 +1,6 @@
 
-# ![logo](./images/bitcoinos.png)
 
-<img src="./images/bitcoinos.png" width="50%" height="50%">
+<img src="./images/bitcoinos.png" width="66%">
 
 #
 
