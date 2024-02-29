@@ -1,8 +1,8 @@
 {
   "canisters": {
-    "wallet": {
-      "candid": "agents/wallet/wallet.did",
-      "package": "wallet",
+    "smartwallet": {
+      "candid": "agents/smartwallet/wallet.did",
+      "package": "smartwallet",
       "type": "rust"
     }
   },

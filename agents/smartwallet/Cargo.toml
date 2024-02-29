@@ -1,0 +1,27 @@
+[package]
+name = "smartwallet"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+candid = "0.10"
+ic-cdk = "0.12"
+ic-cdk-timers = "0.6" # Feel free to remove this dependency if you don't need timers
+
+
+rgb-std = { workspace = true }
+amplify = { workspace = true }
+strict_encoding = { workspace = true }
+strict_types = { workspace = true }
+aluvm = { workspace = true }
+bp-core = { workspace = true }
+# rgb-std = { version = "0.11.0-beta.4", features = ["serde"] }
+# rgb-schemata = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
