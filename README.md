@@ -1,6 +1,6 @@
 
 
-<img src="./images/bitcoinos.png" width="66%">
+<img src="images/bitcoinos.png" width="66%">
 
 #
 
