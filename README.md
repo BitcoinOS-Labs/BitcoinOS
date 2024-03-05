@@ -32,11 +32,24 @@ dfx canister --help
 If you want to test your project locally, you can use the following commands:
 
 ```bash
+# Clone the `wasm-forge/wasi2ic` project:
+git clone https://github.com/wasm-forge/wasi2ic
+
+## Enter the wasi2ic directory and install it
+cd wasi2ic
+cargo install --path .
+
 # Starts the replica, running in the background
 dfx start --background
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
+# Compile the project with `wasm-wasi` inside the project folder
+cargo build --release --target wasm32-wasi
+
+# Translate `wasm32-wasi` target to wasm32-unknown-unknown` under the project directory
+wasi2ic ./target/wasm32-wasi/release/smartwallet.wasm smartwallet.wasm
+
+# Install the new wasm file to IC canister
+dfx canister install --mode reinstall --wasm smartwallet.wasm smartwallet
 ```
 
 Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
