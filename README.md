@@ -48,7 +48,10 @@ cargo build --release --target wasm32-wasi
 # Translate `wasm32-wasi` target to wasm32-unknown-unknown` under the project directory
 wasi2ic ./target/wasm32-wasi/release/smartwallet.wasm smartwallet.wasm
 
-# Install the new wasm file to IC canister
+# Create canister if first time to install
+dfx canister create smartwallet
+
+# Install the new wasm file to IC canister & yes
 dfx canister install --mode reinstall --wasm smartwallet.wasm smartwallet
 ```
 
