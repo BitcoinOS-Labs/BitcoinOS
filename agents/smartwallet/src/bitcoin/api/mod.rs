@@ -31,6 +31,7 @@ fn greet(name: String) -> String {
 
 #[ic_cdk::init]
 fn init() {
+    #[allow(unused_unsafe)]
     unsafe {
         ic_wasi_polyfill::init(&[0u8; 32], &[]);
     };

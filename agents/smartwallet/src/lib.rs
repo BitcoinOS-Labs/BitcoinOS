@@ -1,3 +1,3 @@
-mod api;
-mod domain;
-mod repositories;
+pub mod bitcoin;
+pub mod repositories;
+pub mod rgb;

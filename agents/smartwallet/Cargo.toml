@@ -14,8 +14,10 @@ ic-cdk = "0.13"
 ic-cdk-timers = "0.7" # Feel free to remove this dependency if you don't need timers
 ic-stable-structures = "0.6"
 
+bdk = { workspace = true }
 rgb-std = { workspace = true }
 amplify = { workspace = true }
+getrandom = { workspace = true }
 strict_encoding = { workspace = true }
 strict_types = { workspace = true }
 aluvm = { workspace = true }
@@ -25,4 +27,9 @@ bp-core = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 sha2 = { workspace = true }
+thiserror = { workspace = true }
+zeroize = { workspace = true }
+zeroize_derive = { workspace = true }
+
+
 ic-wasi-polyfill = { git = "https://github.com/wasm-forge/ic-wasi-polyfill", version = "0.3.17" }
