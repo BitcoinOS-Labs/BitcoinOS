@@ -4,6 +4,11 @@
       "candid": "agents/smartwallet/wallet.did",
       "package": "smartwallet",
       "type": "rust"
+    },
+    "os": {
+      "candid": "agents/os/os.did",
+      "package": "os",
+      "type": "rust"
     }
   },
   "defaults": {
