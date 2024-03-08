@@ -1,1 +1,7 @@
 
+
+service : {
+    "create_wallet": () -> (bool);
+
+    "count_wallet": () -> (nat64) query;
+}
