@@ -1,11 +1,11 @@
 use crate::{
     domain::WalletOwner,
     error::Error,
-    repoistories::{stable::StableRepositoy, Repository},
+    repoistories::{wallet_owner_stable::WalletOwnerStableRepositoy, WalletOwnerRepository},
 };
 
 pub fn execute(
-    repo: &mut StableRepositoy,
+    repo: &mut WalletOwnerStableRepositoy,
     owner: candid::Principal,
     canister_id: candid::Principal,
     created_at: u64,

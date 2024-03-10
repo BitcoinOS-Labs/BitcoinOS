@@ -1,12 +1,12 @@
 use crate::{domain::WalletOwner, error::Error, WalletOwnerStable};
 
-use super::Repository;
+use super::WalletOwnerRepository;
 
-pub struct StableRepositoy<'a> {
+pub struct WalletOwnerStableRepositoy<'a> {
     pub owners: &'a mut WalletOwnerStable,
 }
 
-impl<'a> Repository for StableRepositoy<'a> {
+impl<'a> WalletOwnerRepository for WalletOwnerStableRepositoy<'a> {
     fn insert_wallet_owner(
         &mut self,
         owner: candid::Principal,
@@ -25,5 +25,9 @@ impl<'a> Repository for StableRepositoy<'a> {
                 .insert(canister_id, wallet_owner)
                 .ok_or(Error::Unknown)
         }
+    }
+
+    fn count_wallet(&self) -> u64 {
+        self.owners.len()
     }
 }

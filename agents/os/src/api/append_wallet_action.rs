@@ -1,19 +1,13 @@
 use candid::Principal;
 
 use crate::{
-    domain::{Action, WalletAction},
-    error::Error,
-    repoistories::{appen_wallet_action, stable},
-    WALLET_CREATED_LOG, WALLET_OWNER,
+    domain::Action, error::Error, repoistories::wallet_action_stable::WalletActionStableRepository,
+    services, WALLET_CREATED_LOG,
 };
 
-pub fn execute(operator: Principal, action: Action, op_time: u64) -> Result<bool, Error> {
-    let wallet_action = WalletAction {
-        operator,
-        action,
-        op_time,
-    };
-
-    // WALLET_CREATED_LOG.with(|w| appen_wallet_action::execute(&mut w.borrow_mut(), wallet_action))
-    todo!()
+pub fn serve(operator: Principal, action: Action, op_time: u64) -> Result<u64, Error> {
+    WALLET_CREATED_LOG.with(|w| {
+        let repo = WalletActionStableRepository { actions: w };
+        services::append_wallet_action::execute(repo, operator, action, op_time)
+    })
 }

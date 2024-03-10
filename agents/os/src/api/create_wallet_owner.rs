@@ -1,8 +1,8 @@
 use candid::Principal;
 
 use crate::{
-    domain::WalletOwner, error::Error, repoistories::stable::StableRepositoy, services,
-    WALLET_OWNER,
+    domain::WalletOwner, error::Error,
+    repoistories::wallet_owner_stable::WalletOwnerStableRepositoy, services, WALLET_OWNER,
 };
 
 pub fn serve(
@@ -11,7 +11,7 @@ pub fn serve(
     created_at: u64,
 ) -> Result<WalletOwner, Error> {
     WALLET_OWNER.with(|w| {
-        let mut repo = StableRepositoy {
+        let mut repo = WalletOwnerStableRepositoy {
             owners: &mut w.borrow_mut(),
         };
         services::insert_wallet_owner::execute(&mut repo, owner, canister_id, created_at)

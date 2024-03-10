@@ -2,7 +2,10 @@ pub mod append_wallet_action;
 pub mod count_wallet;
 pub mod create_wallet_owner;
 
-use crate::{domain::WalletOwner, error::Error};
+use crate::{
+    domain::{Action, WalletOwner},
+    error::Error,
+};
 
 /// Create a smart wallet canister, log the action, and store the wallet owner info
 #[ic_cdk::update]
@@ -14,12 +17,12 @@ pub fn create_wallet() -> Result<WalletOwner, Error> {
     // TODO: create smart wallet canister
     // create_wallet::
 
-    // append_wallet_log::serve();
+    append_wallet_action::serve(owner, Action::Create, created_at)?;
 
     create_wallet_owner::serve(owner, canister_id, created_at)
 }
 
 #[ic_cdk::query]
 pub fn count_wallet() -> u64 {
-    count_wallet::execute()
+    count_wallet::serve()
 }
