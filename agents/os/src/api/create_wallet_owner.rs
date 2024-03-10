@@ -1,8 +1,8 @@
 use candid::Principal;
 
 use crate::{
-    domain::WalletOwner, error::Error, repoistories::insert_wallet_owner::StableRepositoy,
-    services, WALLET_OWNER,
+    domain::WalletOwner, error::Error, repoistories::stable::StableRepositoy, services,
+    WALLET_OWNER,
 };
 
 pub fn serve(

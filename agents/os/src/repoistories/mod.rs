@@ -3,7 +3,7 @@ use candid::Principal;
 use crate::{domain::WalletOwner, error::Error};
 
 pub mod appen_wallet_action;
-pub mod insert_wallet_owner;
+pub mod stable;
 
 pub trait Repository {
     fn insert_wallet_owner(

@@ -3,7 +3,7 @@ use candid::Principal;
 use crate::{
     domain::{Action, WalletAction},
     error::Error,
-    repoistories::{appen_wallet_action, insert_wallet_owner},
+    repoistories::{appen_wallet_action, stable},
     WALLET_CREATED_LOG, WALLET_OWNER,
 };
 

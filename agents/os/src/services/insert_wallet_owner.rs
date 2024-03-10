@@ -1,7 +1,7 @@
 use crate::{
     domain::WalletOwner,
     error::Error,
-    repoistories::{insert_wallet_owner::StableRepositoy, Repository},
+    repoistories::{stable::StableRepositoy, Repository},
 };
 
 pub fn execute(
