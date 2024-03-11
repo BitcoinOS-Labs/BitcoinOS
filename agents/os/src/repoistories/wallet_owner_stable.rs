@@ -20,7 +20,7 @@ impl<'a> WalletOwnerRepository for WalletOwnerStableRepository<'a> {
         owner: candid::Principal,
         canister_id: candid::Principal,
         created_at: u64,
-    ) -> Result<WalletOwner, Error> {
+    ) -> Result<Option<WalletOwner>, Error> {
         if self.owners.borrow().contains_key(&canister_id) {
             Err(Error::AlreadyExists)
         } else {
@@ -30,10 +30,7 @@ impl<'a> WalletOwnerRepository for WalletOwnerStableRepository<'a> {
                 created_at,
             };
 
-            self.owners
-                .borrow_mut()
-                .insert(canister_id, wallet_owner)
-                .ok_or(Error::Unknown)
+            Ok(self.owners.borrow_mut().insert(canister_id, wallet_owner))
         }
     }
 

@@ -14,7 +14,7 @@ pub trait WalletOwnerRepository {
         owner: Principal,
         canister_id: Principal,
         created_at: u64,
-    ) -> Result<WalletOwner, Error>;
+    ) -> Result<Option<WalletOwner>, Error>;
 
     fn count_wallet(&self) -> u64;
 

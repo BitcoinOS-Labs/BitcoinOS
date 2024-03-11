@@ -6,9 +6,11 @@ use ic_cdk::api::management_canister::main::{
 
 use crate::constants::CYCLES_PER_WALLET_CANISTER;
 
-pub async fn serve(owner: Principal, wallet_wasm: WasmModule) -> Result<Principal, String> {
+pub async fn serve(owners: Vec<Principal>, wallet_wasm: WasmModule) -> Result<Principal, String> {
     // create wallet canister id
-    let wallet_canister_id = create_new_wallet_canister(owner).await?;
+    let wallet_canister_id = create_new_wallet_canister(owners).await?;
+
+    ic_cdk::println!("wallet canister id: {:?}", wallet_canister_id.to_text());
 
     // install wallet wasm module
     install_wallet_canister_code(wallet_canister_id, wallet_wasm, vec![]).await?;
@@ -16,10 +18,10 @@ pub async fn serve(owner: Principal, wallet_wasm: WasmModule) -> Result<Principa
     Ok(wallet_canister_id)
 }
 
-async fn create_new_wallet_canister(owner: Principal) -> Result<Principal, String> {
+async fn create_new_wallet_canister(owners: Vec<Principal>) -> Result<Principal, String> {
     let create_args = CreateCanisterArgument {
         settings: Some(CanisterSettings {
-            controllers: Some(vec![owner]),
+            controllers: Some(owners),
             compute_allocation: None,
             memory_allocation: None,
             freezing_threshold: None,

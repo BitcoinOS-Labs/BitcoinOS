@@ -1,4 +1,9 @@
 
+type CreateCanisterResult = variant {
+    Ok: principal;
+    Err: Error;
+};
+
 type WalletOwnerResult = variant {
     Ok: WalletOwner;
     Err: Error;
@@ -23,12 +28,13 @@ type Action = variant {
 
 type Error = variant {
     AlreadyExists;
+    CreateCanisterFailed: record { msg: text; };
     WriteError;
     Unknown;
 };
 
 service : {
-    "create_wallet": () -> (WalletOwnerResult);
+    "create_wallet": () -> (CreateCanisterResult);
 
     "count_wallet": () -> (nat64) query;
     "list_wallet": () -> (vec WalletOwner) query;

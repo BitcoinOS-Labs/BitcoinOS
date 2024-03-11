@@ -9,6 +9,6 @@ pub fn execute(
     owner: candid::Principal,
     canister_id: candid::Principal,
     created_at: u64,
-) -> Result<WalletOwner, Error> {
+) -> Result<Option<WalletOwner>, Error> {
     repo.insert_wallet_owner(owner, canister_id, created_at)
 }

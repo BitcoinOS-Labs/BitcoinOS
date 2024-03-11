@@ -6,7 +6,7 @@ pub fn serve(
     owner: Principal,
     canister_id: Principal,
     created_at: u64,
-) -> Result<WalletOwner, Error> {
+) -> Result<Option<WalletOwner>, Error> {
     WALLET_OWNER.with(|w| {
         services::insert_wallet_owner::execute(&mut w.into(), owner, canister_id, created_at)
     })

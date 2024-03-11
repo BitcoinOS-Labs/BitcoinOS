@@ -3,12 +3,22 @@
     "smartwallet": {
       "candid": "agents/smartwallet/wallet.did",
       "package": "smartwallet",
-      "type": "rust"
+      "type": "rust",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+     ]
     },
     "os": {
       "candid": "agents/os/os.did",
       "package": "os",
-      "type": "rust"
+      "type": "rust",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+     ]
     }
   },
   "defaults": {
@@ -17,6 +27,11 @@
       "packtool": ""
     }
   },
+  "metadata": [
+    {
+      "name": "candid:service"
+    }
+  ],
   "output_env_file": ".env",
   "version": 1
 }
