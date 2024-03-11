@@ -10,6 +10,17 @@ type WalletOwner = record {
     created_at: nat64;
 };
 
+type WalletAction = record {
+    operator: principal;
+    action: Action;
+    op_time: nat64;
+};
+
+type Action = variant {
+    Create;
+    Delete;
+};
+
 type Error = variant {
     AlreadyExists;
     WriteError;
@@ -20,5 +31,8 @@ service : {
     "create_wallet": () -> (WalletOwnerResult);
 
     "count_wallet": () -> (nat64) query;
+    "list_wallet": () -> (vec WalletOwner) query;
+    "get_wallet_action": (nat64) -> (opt WalletAction) query;
+
 };
 

@@ -1,7 +1,7 @@
 use candid::Principal;
 
 use crate::{
-    domain::{Action, WalletOwner},
+    domain::{Action, WalletAction, WalletOwner},
     error::Error,
 };
 
@@ -17,6 +17,8 @@ pub trait WalletOwnerRepository {
     ) -> Result<WalletOwner, Error>;
 
     fn count_wallet(&self) -> u64;
+
+    fn list_wallet(&self) -> Vec<WalletOwner>;
 }
 
 pub trait WalletActionRepository {
@@ -26,4 +28,6 @@ pub trait WalletActionRepository {
         action: Action,
         op_time: u64,
     ) -> Result<u64, Error>;
+
+    fn get(&self, idx: u64) -> Option<WalletAction>;
 }

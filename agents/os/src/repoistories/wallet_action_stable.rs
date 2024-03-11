@@ -8,16 +8,10 @@ pub struct WalletActionStableRepository<'a> {
     pub actions: &'a RefCell<WalletActionStable>,
 }
 
-impl<'a> WalletActionStableRepository<'a> {
-    // pub fn new(actions: &RefCell<WalletActionStable>) -> Self {
-    //     Self<'a> {
-    //         actions
-    //     }
-    // }
-
-    // pub fn borrow(&self) -> &RefCell<WalletActionStable> {
-    //     self.actions
-    // }
+impl<'a> From<&'a RefCell<WalletActionStable>> for WalletActionStableRepository<'a> {
+    fn from(actions: &'a RefCell<WalletActionStable>) -> Self {
+        Self { actions }
+    }
 }
 
 impl<'a> WalletActionRepository for WalletActionStableRepository<'a> {
@@ -37,5 +31,9 @@ impl<'a> WalletActionRepository for WalletActionStableRepository<'a> {
             .borrow()
             .append(&wallet_action)
             .map_err(|_| Error::WriteError)
+    }
+
+    fn get(&self, idx: u64) -> Option<WalletAction> {
+        self.actions.borrow().get(idx)
     }
 }

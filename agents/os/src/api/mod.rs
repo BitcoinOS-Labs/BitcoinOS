@@ -1,9 +1,11 @@
 pub mod append_wallet_action;
 pub mod count_wallet;
 pub mod create_wallet_owner;
+pub mod get_wallet_action;
+pub mod list_wallet;
 
 use crate::{
-    domain::{Action, WalletOwner},
+    domain::{Action, WalletAction, WalletOwner},
     error::Error,
 };
 
@@ -25,4 +27,14 @@ pub fn create_wallet() -> Result<WalletOwner, Error> {
 #[ic_cdk::query]
 pub fn count_wallet() -> u64 {
     count_wallet::serve()
+}
+
+#[ic_cdk::query]
+pub fn list_wallet() -> Vec<WalletOwner> {
+    list_wallet::serve()
+}
+
+#[ic_cdk::query]
+pub fn get_wallet_action(idx: u64) -> Option<WalletAction> {
+    get_wallet_action::serve(idx)
 }

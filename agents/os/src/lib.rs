@@ -62,7 +62,7 @@ thread_local! {
         )
     );
 
-    static WALLET_CREATED_LOG: RefCell<WalletActionStable> = RefCell::new(
+    static WALLET_ACTION: RefCell<WalletActionStable> = RefCell::new(
         StableLog::init(
             MEMORY_MANAGER.with(|m| m.borrow().get(WALLET_LOG_IDX_MEM_ID)),
             MEMORY_MANAGER.with(|m| m.borrow().get(WALLET_LOG_DATA_MEM_ID))

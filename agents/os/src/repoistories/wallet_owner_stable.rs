@@ -4,11 +4,17 @@ use crate::{domain::WalletOwner, error::Error, WalletOwnerStable};
 
 use super::WalletOwnerRepository;
 
-pub struct WalletOwnerStableRepositoy<'a> {
+pub struct WalletOwnerStableRepository<'a> {
     pub owners: &'a RefCell<WalletOwnerStable>,
 }
 
-impl<'a> WalletOwnerRepository for WalletOwnerStableRepositoy<'a> {
+impl<'a> From<&'a RefCell<WalletOwnerStable>> for WalletOwnerStableRepository<'a> {
+    fn from(owners: &'a RefCell<WalletOwnerStable>) -> Self {
+        Self { owners }
+    }
+}
+
+impl<'a> WalletOwnerRepository for WalletOwnerStableRepository<'a> {
     fn insert_wallet_owner(
         &mut self,
         owner: candid::Principal,
@@ -33,5 +39,9 @@ impl<'a> WalletOwnerRepository for WalletOwnerStableRepositoy<'a> {
 
     fn count_wallet(&self) -> u64 {
         self.owners.borrow().len()
+    }
+
+    fn list_wallet(&self) -> Vec<WalletOwner> {
+        self.owners.borrow().iter().map(|(_, w)| w).collect()
     }
 }
