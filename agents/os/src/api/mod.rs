@@ -1,23 +1,26 @@
 pub mod append_wallet_action;
 pub mod count_wallet;
+pub mod create_wallet_canister;
 pub mod create_wallet_owner;
 pub mod get_wallet_action;
 pub mod list_wallet;
 
 use crate::{
+    constants::WALLET_WASM,
     domain::{Action, WalletAction, WalletOwner},
     error::Error,
 };
 
 /// Create a smart wallet canister, log the action, and store the wallet owner info
 #[ic_cdk::update]
-pub fn create_wallet() -> Result<WalletOwner, Error> {
+pub async fn create_wallet() -> Result<WalletOwner, Error> {
     let owner = ic_cdk::caller();
-    let canister_id = ic_cdk::api::id();
     let created_at = ic_cdk::api::time();
 
-    // TODO: create smart wallet canister
-    // create_wallet::
+    // create smart wallet canister
+    let canister_id = create_wallet_canister::serve(owner, WALLET_WASM.to_owned())
+        .await
+        .map_err(Error::CreateCanisterFailed)?;
 
     append_wallet_action::serve(owner, Action::Create, created_at)?;
 

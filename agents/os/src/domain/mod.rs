@@ -63,3 +63,7 @@ impl Storable for WalletAction {
         is_fixed_size: false,
     };
 }
+
+pub struct WalletCanisterDeployArgs {
+    // sub_account: Option<Subaccount>,
+}

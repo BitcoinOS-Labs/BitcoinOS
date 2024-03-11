@@ -1,4 +1,5 @@
 pub mod api;
+pub mod constants;
 pub mod domain;
 pub mod error;
 pub mod repoistories;
