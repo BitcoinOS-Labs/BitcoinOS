@@ -11,9 +11,7 @@ pub fn serve(
     created_at: u64,
 ) -> Result<WalletOwner, Error> {
     WALLET_OWNER.with(|w| {
-        let mut repo = WalletOwnerStableRepositoy {
-            owners: &mut w.borrow_mut(),
-        };
+        let mut repo = WalletOwnerStableRepositoy { owners: w };
         services::insert_wallet_owner::execute(&mut repo, owner, canister_id, created_at)
     })
 }

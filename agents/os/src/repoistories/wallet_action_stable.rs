@@ -4,7 +4,6 @@ use crate::{domain::WalletAction, error::Error, WalletActionStable};
 
 use super::WalletActionRepository;
 
-
 pub struct WalletActionStableRepository<'a> {
     pub actions: &'a RefCell<WalletActionStable>,
 }

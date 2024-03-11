@@ -4,9 +4,7 @@ use crate::{
 
 pub fn serve() -> u64 {
     WALLET_OWNER.with(|w| {
-        let repo = WalletOwnerStableRepositoy {
-            owners: &mut w.borrow_mut(),
-        };
+        let repo = WalletOwnerStableRepositoy { owners: w };
         services::count_wallet::execute(&repo)
     })
 }

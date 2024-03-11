@@ -1,9 +1,11 @@
+use std::cell::RefCell;
+
 use crate::{domain::WalletOwner, error::Error, WalletOwnerStable};
 
 use super::WalletOwnerRepository;
 
 pub struct WalletOwnerStableRepositoy<'a> {
-    pub owners: &'a mut WalletOwnerStable,
+    pub owners: &'a RefCell<WalletOwnerStable>,
 }
 
 impl<'a> WalletOwnerRepository for WalletOwnerStableRepositoy<'a> {
@@ -13,7 +15,7 @@ impl<'a> WalletOwnerRepository for WalletOwnerStableRepositoy<'a> {
         canister_id: candid::Principal,
         created_at: u64,
     ) -> Result<WalletOwner, Error> {
-        if self.owners.contains_key(&canister_id) {
+        if self.owners.borrow().contains_key(&canister_id) {
             Err(Error::AlreadyExists)
         } else {
             let wallet_owner = WalletOwner {
@@ -21,13 +23,15 @@ impl<'a> WalletOwnerRepository for WalletOwnerStableRepositoy<'a> {
                 owner,
                 created_at,
             };
+
             self.owners
+                .borrow_mut()
                 .insert(canister_id, wallet_owner)
                 .ok_or(Error::Unknown)
         }
     }
 
     fn count_wallet(&self) -> u64 {
-        self.owners.len()
+        self.owners.borrow().len()
     }
 }
