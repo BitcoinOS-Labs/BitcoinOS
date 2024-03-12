@@ -9,6 +9,7 @@ use std::{borrow::Cow, cell::RefCell};
 
 use candid::Principal;
 use domain::{WalletAction, WalletOwner};
+use ic_cdk_macros::export_candid;
 use ic_stable_structures::{
     memory_manager::{MemoryId, MemoryManager as MM, VirtualMemory},
     storable::Bound,

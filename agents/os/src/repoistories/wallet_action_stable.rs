@@ -30,7 +30,9 @@ impl<'a> WalletActionRepository for WalletActionStableRepository<'a> {
         self.actions
             .borrow()
             .append(&wallet_action)
-            .map_err(|_| Error::WriteError)
+            .map_err(|e| Error::WriteError {
+                msg: format!("{e:?}"),
+            })
     }
 
     fn get(&self, idx: u64) -> Option<WalletAction> {

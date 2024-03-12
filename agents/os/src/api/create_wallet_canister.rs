@@ -10,7 +10,10 @@ pub async fn serve(owners: Vec<Principal>, wallet_wasm: WasmModule) -> Result<Pr
     // create wallet canister id
     let wallet_canister_id = create_new_wallet_canister(owners).await?;
 
-    ic_cdk::println!("wallet canister id: {:?}", wallet_canister_id.to_text());
+    ic_cdk::println!(
+        "created wallet canister id: {:?}",
+        wallet_canister_id.to_text()
+    );
 
     // install wallet wasm module
     install_wallet_canister_code(wallet_canister_id, wallet_wasm, vec![]).await?;

@@ -4,6 +4,6 @@ use candid::CandidType;
 pub enum Error {
     AlreadyExists,
     CreateCanisterFailed { msg: String },
-    WriteError,
+    WriteError { msg: String },
     Unknown,
 }

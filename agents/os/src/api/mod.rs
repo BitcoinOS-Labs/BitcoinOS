@@ -6,6 +6,10 @@ pub mod get_wallet_action;
 pub mod list_wallet;
 
 use candid::Principal;
+use ic_cdk::export_candid;
+use ic_ledger_types::{
+    AccountBalanceArgs, AccountIdentifier, Tokens, DEFAULT_SUBACCOUNT, MAINNET_LEDGER_CANISTER_ID,
+};
 
 use crate::{
     constants::WALLET_WASM,
@@ -46,3 +50,20 @@ pub fn list_wallet() -> Vec<WalletOwner> {
 pub fn get_wallet_action(idx: u64) -> Option<WalletAction> {
     get_wallet_action::serve(idx)
 }
+
+#[ic_cdk::update]
+async fn canister_balance() -> Tokens {
+    match ic_ledger_types::account_balance(
+        MAINNET_LEDGER_CANISTER_ID,
+        AccountBalanceArgs {
+            account: AccountIdentifier::new(&ic_cdk::api::id(), &DEFAULT_SUBACCOUNT),
+        },
+    )
+    .await
+    {
+        Ok(t) => t,
+        _ => Tokens::from_e8s(0),
+    }
+}
+
+export_candid!();
