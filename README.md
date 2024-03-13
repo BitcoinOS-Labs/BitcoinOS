@@ -49,10 +49,10 @@ cargo build --release --target wasm32-wasi
 wasi2ic ./target/wasm32-wasi/release/smartwallet.wasm smartwallet.wasm
 
 # Create canister if first time to install
-dfx canister create smartwallet
+dfx canister create os
 
 # Install the new wasm file to IC canister & yes
-dfx canister install --mode reinstall --wasm smartwallet.wasm smartwallet
+dfx deploy os
 ```
 
 Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
