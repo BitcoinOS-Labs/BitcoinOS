@@ -16,8 +16,12 @@ ic-stable-structures = "0.6"
 ciborium = "0.2"
 
 # for Bitcoin
-bdk = "0.29"
-getrandom = "0.2"
+miniscript = { version = "10", features = ["std", "no-std"]}
+bitcoin = { version = "0.30", features = ["std", "no-std"] }
+bdk = { version = "0.29", default-features = false, features = ["all-keys", "async-interface"]}
+core2 = "0.3"
+getrandom = { version = "0.2", features = ["js"] }
+maybe-async = "0.2"
 
 # for RGB
 amplify = "4.6.0"

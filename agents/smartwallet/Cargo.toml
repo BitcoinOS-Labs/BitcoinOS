@@ -14,7 +14,11 @@ ic-cdk = { workspace = true }
 ic-cdk-timers = { workspace = true } # Feel free to remove this dependency if you don't need timers
 ic-stable-structures = { workspace = true }
 
+maybe-async ={ workspace = true }
+miniscript = { workspace = true }
+bitcoin = { workspace = true }
 bdk = { workspace = true }
+core2 = { workspace = true }
 rgb-std = { workspace = true }
 amplify = { workspace = true }
 getrandom = { workspace = true }

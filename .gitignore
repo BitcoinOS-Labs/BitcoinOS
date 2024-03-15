@@ -24,3 +24,6 @@ dist/
 
 # environment variables
 .env
+
+# wasm
+**.wasm
