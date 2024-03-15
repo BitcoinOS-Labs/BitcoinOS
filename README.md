@@ -39,20 +39,30 @@ git clone https://github.com/wasm-forge/wasi2ic
 cd wasi2ic
 cargo install --path .
 
+## Install just
+cargo install just
+
 # Starts the replica, running in the background
 dfx start --background
 
 # Compile the project with `wasm-wasi` inside the project folder
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasi 
+# or
+just build_wallet
 
 # Translate `wasm32-wasi` target to wasm32-unknown-unknown` under the project directory
 wasi2ic ./target/wasm32-wasi/release/smartwallet.wasm smartwallet.wasm
+# or
+just translate_wasm
 
 # Create canister if first time to install
 dfx canister create os
 
 # Install the new wasm file to IC canister & yes
 dfx deploy os
+
+# If you want to deploy smartwall by manually
+just install_wallet
 ```
 
 Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
